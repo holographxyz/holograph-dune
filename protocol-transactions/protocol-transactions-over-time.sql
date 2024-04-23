@@ -4,7 +4,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3643607
+      query_3663559
     WHERE
       block_time <= days.day
   ) AS "Ethereum",
@@ -12,7 +12,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652976
+      query_3663575
     WHERE
       block_time <= days.day
   ) AS "Polygon",
@@ -20,7 +20,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652964
+      query_3663548
     WHERE
       block_time <= days.day
   ) AS "BNB Chain",
@@ -28,7 +28,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652984
+      query_3663538
     WHERE
       block_time <= days.day
   ) AS "Avalanche",
@@ -36,7 +36,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3643906
+      query_3663569
     WHERE
       block_time <= days.day
   ) AS "OP Mainnet",
@@ -44,7 +44,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652981
+      query_3663471
     WHERE
       block_time <= days.day
   ) AS "Arbitrum",
@@ -52,7 +52,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652990
+      query_3663580
     WHERE
       block_time <= days.day
   ) AS "Zora",
@@ -60,7 +60,7 @@ SELECT
     SELECT
       COALESCE(SUM(tx), 0)
     FROM
-      query_3652988
+      query_3663579
     WHERE
       block_time <= days.day
   ) AS "Base",
@@ -69,56 +69,56 @@ SELECT
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3643607
+        query_3663559
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652976
+        query_3663575
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652964
+        query_3663548
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652984
+        query_3663538
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3643906
+        query_3663569
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652981
+        query_3663471
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652990
+        query_3663580
       WHERE
         block_time <= days.day
     ) + (
       SELECT
         COALESCE(SUM(tx), 0)
       FROM
-        query_3652988
+        query_3663579
       WHERE
         block_time <= days.day
     ),
