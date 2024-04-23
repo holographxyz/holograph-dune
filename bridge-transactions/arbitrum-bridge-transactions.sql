@@ -1,4 +1,14 @@
 SELECT
-  COALESCE(SUM(ARB.msg_count), 0) as bridge_jobs
+  sum(bridge_jobs) as bridge_jobs
 FROM
-  query_2611173 AS ARB
+  (
+    SELECT
+      COALESCE(SUM(ARB.msg_count), 0) as bridge_jobs
+    FROM
+      query_2611173 AS ARB
+    UNION
+    SELECT
+      COALESCE(SUM(ARB.msg_count), 0) as bridge_jobs
+    FROM
+      query_3431209 AS ARB
+  )

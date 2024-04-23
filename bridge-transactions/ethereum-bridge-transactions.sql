@@ -1,4 +1,14 @@
 SELECT
-  SUM(ETH.contracts) as contracts_deployed
+  sum(bridge_jobs) as bridge_jobs
 FROM
-  query_2465041 AS ETH
+  (
+    SELECT
+      SUM(ETH.msg_count) as bridge_jobs
+    FROM
+      query_2465088 AS ETH
+    UNION
+    SELECT
+      SUM(ETH.msg_count) as bridge_jobs
+    FROM
+      query_3431193 AS ETH
+  )
