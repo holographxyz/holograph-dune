@@ -57,6 +57,13 @@ SELECT
         query_3430985
       WHERE
         block_time <= days.day
+    ) + (
+      SELECT
+        COALESCE(SUM(contracts), 0)
+      FROM
+        query_3675395
+      WHERE
+        block_time <= days.day
     ),
     0
   ) AS "Total",
@@ -123,7 +130,15 @@ SELECT
       query_3430985
     WHERE
       block_time <= days.day
-  ) AS "Base"
+  ) AS "Base",
+  (
+    SELECT
+      COALESCE(SUM(contracts), 0)
+    FROM
+      query_3675395
+    WHERE
+      block_time <= days.day
+  ) AS "Line"
 FROM
   query_2464155 as days
 ORDER BY

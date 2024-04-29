@@ -57,6 +57,13 @@ SELECT
         query_3431200
       WHERE
         block_time <= days.day
+    ) + (
+      SELECT
+        COALESCE(SUM(msg_count), 0)
+      FROM
+        query_3675390
+      WHERE
+        block_time <= days.day
     ),
     0
   ) as "Total",
@@ -123,7 +130,15 @@ SELECT
       query_3431200
     WHERE
       block_time <= days.day
-  ) AS "Zora"
+  ) AS "Zora",
+  (
+    SELECT
+      COALESCE(SUM(msg_count), 0)
+    FROM
+      query_3675390
+    WHERE
+      block_time <= days.day
+  ) AS "Linea"
 FROM
   query_2464155 as days
 ORDER BY
