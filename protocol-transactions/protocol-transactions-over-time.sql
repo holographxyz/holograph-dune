@@ -64,6 +64,14 @@ SELECT
     WHERE
       block_time <= days.day
   ) AS "Base",
+  (
+    SELECT
+      COALESCE(SUM(tx), 0)
+    FROM
+      query_3681808
+    WHERE
+      block_time <= days.day
+  ) AS "Line",
   COALESCE(
     (
       SELECT
@@ -119,6 +127,13 @@ SELECT
         COALESCE(SUM(tx), 0)
       FROM
         query_3663579
+      WHERE
+        block_time <= days.day
+    ) + (
+      SELECT
+        COALESCE(SUM(tx), 0)
+      FROM
+        query_3681808
       WHERE
         block_time <= days.day
     ),

@@ -2,7 +2,7 @@ SELECT
   (
     ETH.total_transactions + MATIC.total_transactions + AVAX.total_transactions + 
     BNB.total_transactions + OP.total_transactions + ARB.total_transactions +
-    BASE.total_transactions + ZORA.total_transactions
+    BASE.total_transactions + ZORA.total_transactions + LINEA.total_transactions
   ) as total_transactions
 FROM
   query_3643607 AS ETH -- Ethereum - Holograph Protocol related transactions
@@ -13,3 +13,4 @@ FROM
   CROSS JOIN query_3652981 AS ARB -- Arbitrum - Holograph Protocol related transactions
   CROSS JOIN query_3652988 AS BASE -- Base - Holograph Protocol related transactions
   CROSS JOIN query_3652990 AS ZORA -- Zora - Holograph Protocol related transactions
+  CROSS JOIN query_3681471 AS LINEA -- Linea - Holograph Protocol related transactions
