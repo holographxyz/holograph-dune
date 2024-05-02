@@ -209,7 +209,7 @@ WITH
     FROM
       (
         SELECT
-          'Arbitrum One' AS chain,
+          'Arbitrum' AS chain,
           COUNT(tokenId) AS NFTs
         FROM
           hlg_tokens_arbitrum
@@ -233,7 +233,7 @@ WITH
           hlg_tokens_ethereum
         UNION
         SELECT
-          'Optimism' AS chain,
+          'OP Mainnet' AS chain,
           COUNT(tokenId) AS NFTs
         FROM
           hlg_tokens_optimism
@@ -253,7 +253,7 @@ WITH
     FROM
       (
         SELECT
-          'Arbitrum One' AS chain,
+          'Arbitrum' AS chain,
           COUNT(contractAddress) AS contracts
         FROM
           hlg_contracts_arbitrum
@@ -277,7 +277,7 @@ WITH
           hlg_contracts_ethereum
         UNION
         SELECT
-          'Optimism' AS chain,
+          'OP Mainnet' AS chain,
           COUNT(contractAddress) AS contracts
         FROM
           hlg_contracts_optimism
@@ -292,8 +292,8 @@ WITH
       1 ASC
   )
 SELECT
-  nfts.chain AS "Chain",
-  nfts.NFTs AS "NFTs Minted",
+  nfts.chain AS "chain",
+  nfts.NFTs AS "nfts",
   contracts.contracts AS "Contracts Deployed"
 FROM
   hlg_totals AS nfts

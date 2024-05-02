@@ -1,131 +1,49 @@
 WITH
-  hlg_contracts_arbitrum AS (
-    SELECT
-      contractAddress
-    FROM
-      holograph_factory_arbitrum.HolographFactory_evt_BridgeableContractDeployed
-  ),
-  hlg_tokens_arbitrum AS (
-    SELECT
-      contract_address AS contract,
-      topic3 AS tokenId
-    FROM
-      arbitrum.logs
-    WHERE
-      contract_address IN (
+    ethereum_contracts AS (
         SELECT
-          *
+            *
         FROM
-          hlg_contracts_arbitrum
-      )
-      AND topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef -- Transfer
-      AND topic1 = 0x0000000000000000000000000000000000000000000000000000000000000000 -- Minting
-      AND topic3 IS NOT NULL -- ERC721 Transfer
-      AND tx_hash NOT IN (
+            query_3646067
+    ),
+    polygon_contracts AS (
         SELECT
-          evt_tx_hash
+            *
         FROM
-          holograph_operator_arbitrum.HolographOperator_evt_FinishedOperatorJob
-        WHERE
-          evt_block_number = block_number
-      )
-    GROUP BY
-      contract_address,
-      topic3
-  ),
-  hlg_contracts_avalanche_c AS (
-    SELECT
-      contractAddress
-    FROM
-      holograph_factory_avalanche_c.HolographFactory_evt_BridgeableContractDeployed
-  ),
-  hlg_tokens_avalanche_c AS (
-    SELECT
-      contract_address AS contract,
-      topic3 AS tokenId
-    FROM
-      avalanche_c.logs
-    WHERE
-      contract_address IN (
+            query_3646138
+    ),
+    avalanche_contracts AS (
         SELECT
-          *
+            *
         FROM
-          hlg_contracts_avalanche_c
-      )
-      AND topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef -- Transfer
-      AND topic1 = 0x0000000000000000000000000000000000000000000000000000000000000000 -- Minting
-      AND topic3 IS NOT NULL -- ERC721 Transfer
-      AND tx_hash NOT IN (
+            query_3646152
+    ),
+    arbitrum_contracts AS (
         SELECT
-          evt_tx_hash
+            *
         FROM
-          holograph_operator_avalanche_c.HolographOperator_evt_FinishedOperatorJob
-        WHERE
-          evt_block_number = block_number
-      )
-    GROUP BY
-      contract_address,
-      topic3
-  ),
-  hlg_contracts_bnb AS (
-    SELECT
-      contractAddress
-    FROM
-      holograph_factory_bnb.HolographFactory_evt_BridgeableContractDeployed
-  ),
-  hlg_tokens_bnb AS (
-    SELECT
-      contract_address AS contract,
-      topic3 AS tokenId
-    FROM
-      bnb.logs
-    WHERE
-      contract_address IN (
+            query_3646141
+    ),
+    base_contracts AS (
         SELECT
-          *
+            *
         FROM
-          hlg_contracts_bnb
-      )
-      AND topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef -- Transfer
-      AND topic1 = 0x0000000000000000000000000000000000000000000000000000000000000000 -- Minting
-      AND topic3 IS NOT NULL -- ERC721 Transfer
-      AND tx_hash NOT IN (
+            query_3646330
+    ),
+    bsc_contracts AS (
         SELECT
-          evt_tx_hash
+            *
         FROM
-          holograph_operator_bnb.HolographOperator_evt_FinishedOperatorJob
-        WHERE
-          evt_block_number = block_number
-      )
-    GROUP BY
-      contract_address,
-      topic3
-  ),
-  hlg_contracts_ethereum AS (
-    SELECT
-      contractAddress
-    FROM
-      holograph_factory_ethereum.HolographFactory_evt_BridgeableContractDeployed
-  ),
-  hlg_tokens_ethereum AS (
-    SELECT
-      contract_address AS contract,
-      topic3 AS tokenId
-    FROM
-      ethereum.logs
-    WHERE
-      contract_address IN (
+            query_3646134
+    ),
+    op_contracts AS (
         SELECT
-          *
+            *
         FROM
-          hlg_contracts_ethereum
-      )
-      AND topic0 = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef -- Transfer
-      AND topic1 = 0x0000000000000000000000000000000000000000000000000000000000000000 -- Minting
-      AND topic3 IS NOT NULL -- ERC721 Transfer
-      AND tx_hash NOT IN (
+            query_3646313
+    ),
+    zora_contracts AS (
         SELECT
-          evt_tx_hash
+            *
         FROM
           holograph_operator_ethereum.HolographOperator_evt_FinishedOperatorJob
         WHERE
@@ -296,7 +214,52 @@ SELECT
   nfts.NFTs AS "nfts",
   contracts.contracts AS "Contracts Deployed"
 FROM
-  hlg_totals AS nfts
-  LEFT JOIN hlg_contracts AS contracts ON nfts.chain = contracts.chain
-ORDER BY
-  1 ASC
+    (
+        SELECT
+            'Ethereum' AS chain,
+            contracts_deployed
+        FROM
+            ethereum_contracts
+        UNION
+        SELECT
+            'Polygon' AS chain,
+            contracts_deployed
+        FROM
+            polygon_contracts
+        UNION
+        SELECT
+            'Avalanche' AS chain,
+            contracts_deployed
+        FROM
+            avalanche_contracts
+        UNION
+        SELECT
+            'Arbitrum' AS chain,
+            contracts_deployed
+        FROM
+            arbitrum_contracts
+        UNION
+        SELECT
+            'Base' AS chain,
+            contracts_deployed
+        FROM
+            base_contracts
+        UNION
+        SELECT
+            'BNB Chain' AS chain,
+            contracts_deployed
+        FROM
+            bsc_contracts
+        UNION
+        SELECT
+            'OP Mainnet' AS chain,
+            contracts_deployed
+        FROM
+            op_contracts
+        UNION
+        SELECT
+            'Zora' AS chain,
+            contracts_deployed
+        FROM
+            zora_contracts
+    )
