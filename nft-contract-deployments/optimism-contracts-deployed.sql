@@ -5,10 +5,10 @@ FROM
     SELECT
       SUM(OP.contracts) as contracts_deployed
     FROM
-      query_2506134 AS OP
+      query_3708895 AS OP
     UNION
-    SELECT
-      SUM(OP.msg_count) as bridge_jobs
-    FROM
-      query_3431199 AS OP
+SELECT
+  COALESCE(SUM(OP.contracts), 0) as contracts_deployed
+FROM
+  query_3430981 AS OP
   )

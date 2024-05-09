@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(BNB.contracts) as contracts_deployed
     FROM
-      query_2465035 AS BNB
+      query_3708881 AS BNB
     UNION
     SELECT
       COALESCE(SUM(BNB.contracts), 0) as contracts_deployed

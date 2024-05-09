@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(ARB.contracts) as contracts_deployed
     FROM
-      query_2611160 AS ARB
+      query_3708861 AS ARB
     UNION
     SELECT
       COALESCE(SUM(ARB.contracts), 0) as contracts_deployed

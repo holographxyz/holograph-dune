@@ -6,7 +6,7 @@ WITH optimism_holograph_protocol_transactions AS (
   FROM optimism.logs
   WHERE
     block_time >= TRY_CAST('2023-01-01 00:00:00' AS TIMESTAMP)
-    AND block_time < TRY_CAST('2024-01-01 00:00:00' AS TIMESTAMP)
+    AND block_time < TRY_CAST('2024-12-31 00:00:00' AS TIMESTAMP)
     AND (
       contract_address IN (
         SELECT 

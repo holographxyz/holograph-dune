@@ -5,7 +5,7 @@ FROM
   SELECT
     COUNT(AVAX.wallet) as unique_wallets
   FROM
-    query_2430212 AS AVAX -- Avalanche - Holograph Protocol related unique wallets
+    query_3709469 AS AVAX -- Avalanche - Holograph Protocol related unique wallets
 
   UNION ALL
 

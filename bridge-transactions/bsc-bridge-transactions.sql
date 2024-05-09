@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(BNB.msg_count) as bridge_jobs
     FROM
-      query_2465084 AS BNB
+      query_3707683 AS BNB
     UNION
     SELECT
       SUM(BNB.msg_count) as bridge_jobs

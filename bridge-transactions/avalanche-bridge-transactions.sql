@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(AVAX.msg_count) as bridge_jobs
     FROM
-      query_2465061 AS AVAX
+      query_3707667 AS AVAX
     UNION
     SELECT
       SUM(AVAX.msg_count) as bridge_jobs

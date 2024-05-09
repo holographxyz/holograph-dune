@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(AVAX.contracts) as contracts_deployed
     FROM
-      query_2465008 AS AVAX
+      query_3708858 AS AVAX
     UNION
     SELECT
       COALESCE(SUM(AVAX.contracts), 0) as contracts_deployed
