@@ -1,4 +1,4 @@
-SELECT SUM(total_transactions) AS total_transactions FROM 
+Select sum(total_transactions)as total_transactions from (
 WITH ethereum_holograph_protocol_transactions AS (
   SELECT
     tx_hash AS tx,
@@ -6,7 +6,7 @@ WITH ethereum_holograph_protocol_transactions AS (
   FROM ethereum.logs
   WHERE
     block_time >= TRY_CAST('2023-01-01 00:00:00' AS TIMESTAMP)
-    AND block_time < TRY_CAST('2024-01-01 00:00:00' AS TIMESTAMP)
+    AND block_time < TRY_CAST('2024-12-31 00:00:00' AS TIMESTAMP)
     AND (
       contract_address IN (
         SELECT

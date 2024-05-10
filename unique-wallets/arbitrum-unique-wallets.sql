@@ -5,7 +5,7 @@ FROM
   SELECT
     COUNT(ARB.wallet) as unique_wallets
   FROM
-    query_2611221 AS ARB -- Arbitrum - Holograph Protocol related unique wallets
+    query_3709476 AS ARB -- Arbitrum - Holograph Protocol related unique wallets
 
   UNION ALL
 

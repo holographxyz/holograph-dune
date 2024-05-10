@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(MATIC.msg_count) as bridge_jobs
     FROM
-      query_2465079 AS MATIC
+      query_3707753 AS MATIC
     UNION
     SELECT
       SUM(MATIC.msg_count) as bridge_jobs

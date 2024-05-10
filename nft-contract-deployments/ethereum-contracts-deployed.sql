@@ -5,7 +5,7 @@ FROM
     SELECT
       SUM(ETH.contracts) as contracts_deployed
     FROM
-      query_2465041 AS ETH
+      query_3708890 AS ETH
     UNION
     SELECT
       COALESCE(SUM(ETH.contracts), 0) as contracts_deployed

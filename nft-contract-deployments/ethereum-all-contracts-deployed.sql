@@ -1,13 +1,10 @@
 SELECT
-    block_time,
-    contracts
+    COALESCE(v1.block_time, v2.block_time) as block_time,
+    (
+        COALESCE(v1.contracts, 0) + COALESCE(v2.contracts, 0)
+    ) as contracts
 FROM
-    query_2465041
-UNION
-SELECT
-    block_time,
-    contracts
-FROM
-    query_3430966
+    query_3708890 as v1
+    FULL JOIN query_3430966 as v2 on v1.block_time = v2.block_time
 order by
     block_time

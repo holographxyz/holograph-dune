@@ -1,13 +1,10 @@
 SELECT
-    block_time,
-    msg_count
+    COALESCE(v1.block_time, v2.block_time) as block_time,
+    (
+        COALESCE(v1.msg_count, 0) + COALESCE(v2.msg_count, 0)
+    ) as msg_count
 FROM
-    query_2611173
-UNION
-SELECT
-    block_time,
-    msg_count
-FROM
-    query_3431209
+    query_3707643 as v1
+    FULL JOIN query_3431209 as v2 on v1.block_time = v2.block_time
 order by
     block_time
